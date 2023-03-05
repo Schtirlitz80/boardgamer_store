@@ -19,3 +19,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def fill_the_db_with_products():
+    pass
