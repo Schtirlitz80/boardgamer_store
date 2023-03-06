@@ -1,2 +1,4 @@
 /.idea/
-superuser.txt
+/superuser.txt
+/config.py
+/products_scraped/
