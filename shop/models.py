@@ -1,4 +1,19 @@
 from django.db import models
+import json
+from django.utils.text import slugify
+from uuid import uuid4
+from pytils.translit import slugify
+
+
+def unique_slugify(instance, slug):
+    """
+    Генератор уникальных SLUG для моделей, в случае существования такого SLUG.
+    """
+    model = instance.__class__
+    unique_slug = slugify(slug)
+    while model.objects.filter(slug=unique_slug).exists():
+        unique_slug = f'{unique_slug}-{uuid4().hex[:8]}'
+    return unique_slug
 
 
 # Create your models here.
@@ -20,14 +35,20 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-import json
-from django.utils.text import slugify
-# from djavto.settings.base import SLUG_TRANSLITERATOR
+    def save(self, *args, **kwargs):
+        """
+        Сохранение полей модели при их отсутствии заполнения
+        """
+        if not self.slug:
+            self.slug = unique_slugify(self, self.name)
+        super().save(*args, **kwargs)
+
+
 def fill_db():
     with open('products_scraped/products.json', 'r', encoding='utf-8') as json_file:
         data = json.load(json_file)
 
-        for item in data[:5]:
+        for item in data[:300]:
             product = Product()
 
             num = item["num"]
@@ -40,7 +61,6 @@ def fill_db():
             product.available = True
             image_filename = item["image_filename"]
             product.image = 'products/2023/03/05/' + image_filename
-            product.slug = slugify(product.name, allow_unicode=False)
 
             print(product)
             print(item)
