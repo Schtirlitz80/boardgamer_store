@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 import json
 from django.utils.text import slugify
 from uuid import uuid4
@@ -42,6 +44,9 @@ class Product(models.Model):
         if not self.slug:
             self.slug = unique_slugify(self, self.name)
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('shop:product_detail', args=[self.id, self.slug])
 
 
 def fill_db():
