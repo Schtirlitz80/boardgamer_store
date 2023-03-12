@@ -4,11 +4,11 @@ from .models import Product
 
 
 # Create your views here.
-def product_list(request):
+def home(request):
     products = Product.objects.filter(available=True)
     # Категорий продуктов у нас пока нет
 
-    return render(request, 'shop/product/list.html',
+    return render(request, 'shop/product/home.html',
                   {'products': products})
 
 
