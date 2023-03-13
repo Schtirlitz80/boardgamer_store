@@ -22,18 +22,19 @@ def unique_slugify(instance, slug):
 class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
     short_description = models.TextField(blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discount = models.IntegerField(default=0)
     available = models.BooleanField(default=True)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     class Meta:
         ordering = ('name',)
         index_together = (('id', 'slug'),)
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
 
     def __str__(self):
         return self.name
@@ -50,11 +51,20 @@ class Product(models.Model):
         return reverse('shop:product_detail', args=[self.id, self.slug])
 
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, blank=True, null=True, default=None)
+    image = models.ImageField(upload_to=f'products/{product.slug}', blank=True)
+    is_main = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+
 def fill_db():
-    with open('products_scraped/products.json', 'r', encoding='utf-8') as json_file:
+    with open('products_scraped2/products.json', 'r', encoding='utf-8') as json_file:
         data = json.load(json_file)
 
-        for item in data[:300]:
+        for item in data:
             product = Product()
 
             num = item["num"]

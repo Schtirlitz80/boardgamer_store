@@ -5,6 +5,10 @@ html, body{
     background-color: #edeef0;
 }
 
+a.text-dark{
+    text-decoration: none;
+}
+
 .navbar{
     margin-bottom: 0;
 }
@@ -13,14 +17,21 @@ html, body{
     padding-bottom: 100px;
 }
 
+.wrapper-content{
+    overflow: auto;
+    padding-bottom: 180px;
+}
+
 .footer{
-    margin-bottom: -100px;
+    position: relative;
+    margin-bottom: -180px;
+    height: 180px;
+    clear: both;
     background-color: white;
-    height: 200px;
 }
 
 .section-top{
-    margin: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -48,4 +59,8 @@ html, body{
     color: white;
     font-weight: 700;
     padding: 3px;
+}
+
+.product-name{
+    text-decoration: none;
 }

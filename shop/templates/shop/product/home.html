@@ -17,16 +17,17 @@
                 {% for product in products|slice:":4" %}
                 <div class="col-lg-3">
                     <div class="product-item">
-                        <div>
-                            <img src="{{ product.image }}" class="img-fluid">
-                        </div>
-                        {% if product.discount %}
-                            <div class="discount-container">
-                                <span>скидка {{ product.discount }}%</span>
+                        <a href="{{ product.get_absolute_url }}" class="text-dark">
+                            <div>
+                                <img src="{{ product.image }}" class="img-fluid">
                             </div>
-                        {% endif %}
-
-                        <h4>{{ product.name }}</h4>
+                            {% if product.discount %}
+                                <div class="discount-container">
+                                    <span>скидка {{ product.discount }}%</span>
+                                </div>
+                            {% endif %}
+                            <h4 class="text-dark product-name">{{ product.name }}</h4>
+                        </a>
                         <p>
                             {{ product.short_description|truncatechars_html:40 }}
                         </p>
