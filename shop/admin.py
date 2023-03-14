@@ -1,5 +1,5 @@
 from django.contrib import admin
-from shop.models import Product
+from shop.models import Product, ProductImage
 
 
 # Register your models here.
@@ -11,13 +11,6 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
-
-# name = models.CharField(max_length=200, db_index=True)
-# slug = models.SlugField(max_length=200, db_index=True)
-# image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
-# short_description = models.TextField(blank=True)
-# description = models.TextField(blank=True)
-# price = models.DecimalField(max_digits=10, decimal_places=2)
-# available = models.BooleanField(default=True)
-# created = models.DateTimeField(auto_now_add=True)
-# updated = models.DateTimeField(auto_now=True)
+@admin.register(ProductImage)
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ['product', 'image', 'is_main', 'is_active', 'created', 'updated']
