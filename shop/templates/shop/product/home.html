@@ -14,25 +14,25 @@
                         Новые поступления
                     </h1>
                 </div>
-                {% for product in products|slice:":4" %}
+                {% for product_image in product_images|slice:":4" %}
                 <div class="col-lg-3">
                     <div class="product-item">
-                        <a href="{{ product.get_absolute_url }}" class="text-dark">
+                        <a href="{{ product_image.product.get_absolute_url }}" class="text-dark">
                             <div>
-                                <img src="{{ product.image }}" class="img-fluid">
+                                <img src="{{ product_image.image }}" class="img-fluid">
                             </div>
-                            {% if product.discount %}
+                            {% if product_image.product.discount %}
                                 <div class="discount-container">
-                                    <span>скидка {{ product.discount }}%</span>
+                                    <span>скидка {{ product_image.product.discount }}%</span>
                                 </div>
                             {% endif %}
-                            <h4 class="text-dark product-name">{{ product.name }}</h4>
+                            <h4 class="text-dark product-name">{{ product_image.product.name }}</h4>
                         </a>
                         <p>
-                            {{ product.short_description|truncatechars_html:40 }}
+                            {{ product_image.product.short_description|truncatechars_html:40 }}
                         </p>
                         <div>
-                            {{ product.price }} руб.
+                            {{ product_image.product.price }} руб.
                         </div>
                         <div class="add-to-cart-btn">
                             <button class="btn btn-success">
@@ -55,18 +55,18 @@
                         Новые поступления
                     </h1>
                 </div>
-                {% for product in products|slice:":4" %}
+                {% for product_image in product_images|slice:":4" %}
                 <div class="col-lg-3">
                     <div class="product-item">
                         <div>
-                            <img src="{{ product.image }}" class="img-fluid">
+                            <img src="{{ product_image.image }}" class="img-fluid">
                         </div>
-                        <h4>{{ product.name }}</h4>
+                        <h4>{{ product_image.product.name }}</h4>
                         <p>
-                            {{ product.short_description|truncatechars_html:40 }}
+                            {{ product_image.product.short_description|truncatechars_html:40 }}
                         </p>
                         <div>
-                            {{ product.price }} руб.
+                            {{ product_image.product.price }} руб.
                         </div>
                         <div class="add-to-cart-btn">
                             <button class="btn btn-success">
@@ -89,18 +89,18 @@
                         Новые поступления
                     </h1>
                 </div>
-                {% for product in products|slice:":4" %}
+                {% for product_image in product_images|slice:":4" %}
                 <div class="col-lg-3">
                     <div class="product-item">
                         <div>
-                            <img src="{{ product.image }}" class="img-fluid">
+                            <img src="{{ product_image.image }}" class="img-fluid">
                         </div>
-                        <h4>{{ product.name }}</h4>
+                        <h4>{{ product_image.product.name }}</h4>
                         <p>
-                            {{ product.short_description|truncatechars_html:40 }}
+                            {{ product_image.product.short_description|truncatechars_html:40 }}
                         </p>
                         <div>
-                            {{ product.price }} руб.
+                            {{ product_image.product.price }} руб.
                         </div>
                         <div class="add-to-cart-btn">
                             <button class="btn btn-success">

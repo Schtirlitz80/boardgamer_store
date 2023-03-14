@@ -53,7 +53,7 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, to_field='slug', on_delete=models.CASCADE, related_name='prod')
+    product = models.ForeignKey(Product, to_field='slug', on_delete=models.CASCADE, related_name='prod_images')
     # product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prod')
     is_main = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
