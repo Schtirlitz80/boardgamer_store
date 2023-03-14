@@ -52,8 +52,9 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, blank=True, null=True, default=None)
-    image = models.ImageField(upload_to=f'products/{product.slug}', blank=True)
+    # product = models.ForeignKey(Product, blank=True, null=True, default=None, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, to_field='slug', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=f'products/{product}', blank=True)
     is_main = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -75,12 +76,29 @@ def fill_db():
             product.short_description = item["short_description"]
             product.description = item["full_description"]
             product.available = True
-            image_filename = item["image_filename"]
-            product.image = 'products/2023/03/05/' + image_filename
+            # image_filename = item["image_filename"]
+            # product.image = 'products/2023/03/05/' + image_filename
 
             print(product)
             print(item)
             product.save()
+
+            product_images = item['image_filenames']
+            for image_filename in product_images:
+                image = ProductImage()
+                image.product = product
+                image.image = product.slug
+                if image_filename == '0.jpg':
+                    image.is_main = True
+                else:
+                    image.is_main = False
+                image.is_active = True
+
+                print(image)
+                print(image_filename)
+                image.save()
+
+#                 TODO Нужно поправить путь к файлам изображений, а также создать папки по слагам и закинуть туда файлы изображений
 
 
 if __name__ == '__main__':
