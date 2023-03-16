@@ -15,6 +15,9 @@ def home(request):
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
-    return render(request, 'shop/product/detail.html', {'product': product})
+    # product_images = ProductImage.objects.filter(is_active=True, product__available=True)
+    # product_main_image = ProductImage.objects.filter(is_active=True, is_main=True, product__available=True)
+    # product_images = product.prod_images
+    return render(request, 'shop/product/detail.html', locals())
 
 # TODO Нужно обязательно сделать так, чтобы одна из картинок была главной и только одна

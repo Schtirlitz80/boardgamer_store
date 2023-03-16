@@ -24,7 +24,7 @@ a.text-dark{
 
 .footer{
     position: relative;
-    margin-bottom: -180px;
+    margin-top: -180px;
     height: 180px;
     clear: both;
     background-color: white;
