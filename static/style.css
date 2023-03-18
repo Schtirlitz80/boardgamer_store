@@ -64,3 +64,13 @@ a.text-dark{
 .product-name{
     text-decoration: none;
 }
+
+.product-description-tabs{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.product-image-item{
+    padding: 5px;
+    margin-bottom: 5px;
+}
