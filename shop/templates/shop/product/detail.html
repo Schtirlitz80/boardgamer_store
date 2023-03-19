@@ -48,12 +48,15 @@
                     </div>
 
                     <div>
-                        <form id="form_buing_product" class="input-group">
+                        <form id="form_buying_product" class="input-group">
                             <div class="form-group">
-                                <input type="number" class="form-control" placeholder="Количество штук" aria-label="Количество штук" aria-describedby="button-buy">
+                                <input type="number" class="form-control" placeholder="Количество штук" aria-label="Количество штук" aria-describedby="submit_btn" id="number">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-buy" id="button-buy">Купить</button>
+                                <button type="submit" class="btn btn-success btn-buy" id="submit_btn"
+                                        data-product_id = "{{ product.id }}"
+                                        data-price = "{{ product.price }}"
+                                        data-name = "{{ product.name }}" >Купить</button>
                             </div>
                         </form>
                     </div>
@@ -63,18 +66,4 @@
         </div>
     </div>
 
-
-
-
-
-{#    <div class="product-detail">#}
-{#        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">#}
-{#        <h1>{{ product.name }}</h1>#}
-{#        <h2>#}
-{#            <a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>#}
-{#        </h2>#}
-{#        <p class="price">${{ product.price }}</p>#}
-{##}
-{#        {{ product.description|linebreaks }}#}
-{#    </div>#}
 {% endblock %}

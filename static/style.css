@@ -18,7 +18,7 @@ a.text-dark{
 }
 
 .wrapper-content{
-    overflow: auto;
+    /*overflow: auto;*/
     padding-bottom: 180px;
 }
 
@@ -73,4 +73,14 @@ a.text-dark{
 .product-image-item{
     padding: 5px;
     margin-bottom: 5px;
+}
+
+.navbar-top{
+    /*min-height: 50px;*/
+    height: 40px;
+    background-color: lightgray;
+}
+
+.basket-items{
+    display: inline-flex;
 }
