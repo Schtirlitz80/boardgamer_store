@@ -19,6 +19,7 @@ def product_detail(request, id, slug):
     session_key = request.session.session_key
     if not session_key:
         request.session.cycle_key()
+
     print("request.session.session_key: ", request.session.session_key)
 
     return render(request, 'shop/product/detail.html', locals())
