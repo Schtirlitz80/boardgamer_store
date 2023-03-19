@@ -14,6 +14,27 @@ $(document).ready(function (){
         console.log('product name: ', product_name);
         console.log('product price: ', product_price);
 
+        let data = {};
+        data.product_id = product_id;
+        data.nmb = nmb;
+
+        let csrf_token = $('#form_buying_product [name="csrfmiddlewaretoken"]').val();
+        data["csrfmiddlewaretoken"] = csrf_token;
+
+        let url = form.attr("action");
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            cache: true,
+            success: function (data) {
+                console.log('OK');
+            },
+            error: function (){
+                console.log("error")
+            }
+        })
+
         $('.basket-items ul').append('<li class="basket-items"><a class="dropdown-item" href="#">Арт.'+
             product_id + ' <b>' + product_name + '</b> - ' + nmb + ' шт. * ' + product_price + ' руб.</a>' +
             '<button type="button" class="btn-close delete-item" aria-label="Close"></button></li>')
