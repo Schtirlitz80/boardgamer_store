@@ -25,9 +25,15 @@
           </li>
           <li class="nav-item dropdown basket-items">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-               aria-expanded="false">Корзина <span id="basket_total_amount"></span><span id="basket_total_nmb"></span></a>
+               aria-expanded="false">Корзина <span id="basket_total_amount"></span><span id="basket_total_nmb">
+                {% if products_total_nmb %}
+                    ({{ products_total_nmb }})
+                {% endif %}
+            </span></a>
             <ul class="dropdown-menu">
-{#              <li><a class="dropdown-item" href="#">Покупка 1</a></li>#}
+                {% for product_in_basket in products_in_basket %}
+                    <li><a class="dropdown-item" href="#">Арт.{{ product_in_basket.product_id }} <b>{{ product_in_basket.product.name }}</b> - {{ product_in_basket.nmb }} шт. * {{ product_in_basket.price_per_item }} руб.</a></li>
+                {% endfor %}
             </ul>
           </li>
         </ul>
