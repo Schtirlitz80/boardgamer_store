@@ -22,6 +22,8 @@ $(document).ready(function (){
         data["csrfmiddlewaretoken"] = csrf_token;
 
         let url = form.attr("action");
+
+    // console.log(data)
         $.ajax({
             url: url,
             type: 'POST',
