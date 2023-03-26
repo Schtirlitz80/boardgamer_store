@@ -34,16 +34,19 @@ $(document).ready(function (){
                 console.log(data.products_total_nmb);
                 if (data.products_total_nmb){
                     $('#basket_total_nmb').text('(' + data.products_total_nmb + ')');
+                    console.log(data.products);
+                    $('.basket-items ul').html('');
+                    $.each(data.products, function (k, v){
+                        $('.basket-items ul').append('<li class="basket-items"><a class="dropdown-item" href="#">Арт.'+
+                            product_id + ' <b>' + v.name + '</b> - ' + v.nmb + ' шт. * ' + v.price_per_item + ' руб.</a>' +
+                            '<button type="button" class="btn-close delete-item" aria-label="Close"></button></li>')
+                    });
                 }
             },
             error: function (){
                 console.log("error")
             }
         })
-
-        $('.basket-items ul').append('<li class="basket-items"><a class="dropdown-item" href="#">Арт.'+
-            product_id + ' <b>' + product_name + '</b> - ' + nmb + ' шт. * ' + product_price + ' руб.</a>' +
-            '<button type="button" class="btn-close delete-item" aria-label="Close"></button></li>')
     });
 
     $(document).on('click', '.delete-item', function (){
