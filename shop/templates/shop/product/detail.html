@@ -48,8 +48,7 @@
                     </div>
 
                     <div>
-                        <form id="form_buying_product" class="input-group" action="{% url 'order:basket_adding' %}">{% csrf_token %}
-{#                      TODO: НУЖНО ЗАПОЛНИТЬ action  #}
+                        <form id="form_buying_product" class="input-group" data-action="{% url 'order:basket_adding' %}">
                             <div class="form-group">
                                 <input type="number" class="form-control" placeholder="Количество штук" aria-label="Количество штук" aria-describedby="submit_btn" id="number">
                             </div>

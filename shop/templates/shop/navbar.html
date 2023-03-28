@@ -23,7 +23,7 @@
           <li class="nav-item">
             <a class="nav-link disabled">Disabled</a>
           </li>
-          <li class="nav-item dropdown basket-items">
+          <li class="nav-item dropdown basket-items" data-action="/basket_addingbasket_adding" id="nav_basket">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                aria-expanded="false">Корзина <span id="basket_total_amount"></span><span id="basket_total_nmb">
                 {% if products_total_nmb %}
@@ -32,7 +32,12 @@
             </span></a>
             <ul class="dropdown-menu">
                 {% for product_in_basket in products_in_basket %}
-                    <li><a class="dropdown-item" href="#">Арт.{{ product_in_basket.product_id }} <b>{{ product_in_basket.product.name }}</b> - {{ product_in_basket.nmb }} шт. * {{ product_in_basket.price_per_item }} руб.</a></li>
+                    <li><a class="dropdown-item" href="#">Арт.{{ product_in_basket.product_id }} <b>
+                        {{ product_in_basket.product.name }}</b> - {{ product_in_basket.nmb }} шт. *
+                        {{ product_in_basket.price_per_item }} руб.</a>
+                        <button type="button" class="btn-close delete-item" aria-label="Close"
+                        data-product_id="{{ product_in_basket.product_id }}"></button>
+                    </li>
                 {% endfor %}
             </ul>
           </li>
