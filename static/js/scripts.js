@@ -83,4 +83,25 @@ $(document).ready(function (){
         nmb = 0;
         basketUpdating(product_id, nmb, is_delete=true);
     });
+
+    function calculatingBasketAmount(){
+        let total_order_amount = 0;
+        $('.total_product_in_basket_amount').each(function(){
+            total_order_amount += Number($(this).text());
+        });
+        $('#total_order_amount').text(total_order_amount.toFixed(2));
+    };
+
+    $(document).on('change', '.product-in-basket-nmb', function (){
+        let current_nmb = parseInt($(this).val());
+        let current_tr = $(this).closest('tr');
+        let current_price = parseFloat(current_tr.find('.product-price').text()).toFixed(2);
+        let total_amount = current_nmb * current_price;
+        current_tr.find('.total_product_in_basket_amount').text(total_amount.toFixed(2));
+
+        calculatingBasketAmount();
+    });
+
+    calculatingBasketAmount();
+
 });

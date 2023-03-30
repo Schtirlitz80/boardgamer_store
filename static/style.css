@@ -84,3 +84,7 @@ a.text-dark{
 .basket-items{
     display: inline-flex;
 }
+
+.form-error{
+    color: red;
+}

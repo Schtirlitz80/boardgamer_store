@@ -9,7 +9,6 @@ def home(request):
     product_images = ProductImage.objects.filter(is_active=True, is_main=True, product__available=True)
     # Категорий продуктов у нас пока нет
 
-    # return render(request, 'shop/product/home.html', {'products': products})
     return render(request, 'shop/product/home.html', locals())
 
 
